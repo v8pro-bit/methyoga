@@ -1,48 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>404 Not Found</title>
-  <style>
-    body {
-      background-color: #f9f9f9;
-      color: #2b2b2b;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
-    }
-    h1 {
-      font-size: 4rem;
-      margin-bottom: 0.5rem;
-    }
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      color: #555;
-    }
-    p {
-      font-size: 1rem;
-      color: #888;
-    }
-    .code {
-      font-family: monospace;
-      background: #eee;
-      padding: 5px 10px;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SportsOnline - Live Sports</title>
+  <link href="./output.css" rel="stylesheet" />
+  <link rel="icon" type="image/png"
+    href="https://img.freepik.com/premium-vector/sports-brand-logo-vector-32_666870-2794.jpg">
 </head>
+
 <body>
-  <h1>404</h1>
-  <h2>Not Found</h2>
-  <p>The requested URL was not found on this server.</p>
-  <p class="code">Apache/2.4.41 (Ubuntu) Server at example.com Port 80</p>
+  <header>
+    <div class="header-top">
+      <div class="logo"><span>SPORTSONLINE</span></div>
+    </div>
+    <div class="league-tabs" id="leagueTabs">
+      <div class="league-tab active" data-league="All">All</div>
+      <div class="league-tab" data-league="MMA">MMA Streams</div>
+      <div class="league-tab" data-league="BOXING">BOXING Streams</div>
+      <div class="league-tab" data-league="NBA">NBA Streams</div>
+      <div class="league-tab" data-league="CFB">CFB Streams</div>
+      <div class="league-tab" data-league="NCAAB">NCAAB Streams</div>
+      <div class="league-tab" data-league="WWE">WWE Streams</div>
+      <div class="league-tab" data-league="MLB">MLB Streams</div>
+      <div class="league-tab" data-league="NFL">NFL Streams</div>
+      <div class="league-tab" data-league="NHL">NHL Streams</div>
+      <div class="league-tab" data-league="MLS">MLS Streams</div>
+      <div class="league-tab" data-league="Soccer">Soccer</div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="content-box">
+      <section class="main-content">
+        <div class="ad-top">
+
+        </div>
+
+        <input type="text" class="search" id="searchBox" placeholder="Search team & League ..."
+          onkeyup="searchMatches()">
+
+        <div id="matches">
+
+
+      <div class="match-link"
+     data-frame="https://thedaddy.to/embed/stream-429.php">
+  <div class="match-card">
+    <div class="match-league">SOCCER</div>
+    <div class="match-title">Baltimore Orioles vs New York Mets</div>
+    <div class="match-time">July 8, 2025 - 3:00 PM ET</div>
+  </div>
+</div>
+
+
+
+
+
+        </div>
+      </section>
+
+      <aside class="sidebar">
+
+
+
+
+
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.league-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.league-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const selectedLeague = tab.getAttribute('data-league');
+        const matches = document.querySelectorAll('.match-link');
+
+        matches.forEach(match => {
+          const league = match.getAttribute('data-league');
+          match.style.display = (selectedLeague === 'All' || selectedLeague === league) ? 'block' : 'none';
+        });
+      });
+    });
+
+    function searchMatches() {
+      const input = document.getElementById('searchBox').value.toLowerCase();
+      const matches = document.querySelectorAll('.match-link');
+
+      matches.forEach(match => {
+        const title = match.querySelector('.match-title')?.textContent.toLowerCase() || '';
+        const league = match.getAttribute('data-league').toLowerCase();
+        match.style.display = (title.includes(input) || league.includes(input)) ? 'block' : 'none';
+      });
+    }
+
+
+
+document.querySelectorAll('.match-link').forEach(el => {
+  el.addEventListener('click', function () {
+    const frame = this.getAttribute('data-frame');
+    const title = this.querySelector('.match-title').textContent.trim();
+
+    if (frame && title) {
+      const slug = title.toLowerCase()
+                        .replace(/\s+/g, '-')
+                        .replace(/[^\w-]/g, '');
+
+      sessionStorage.setItem('frame', frame);
+      sessionStorage.setItem('title', title);
+
+      window.location.href = `/watch?match=${slug}`;
+    }
+  });
+});
+  </script>
 </body>
+
 </html>
