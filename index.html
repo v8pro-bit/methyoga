@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,10 +12,12 @@
 <body>
   <header>
     <div class="header-top">
-      <div class="logo"><span>SPORTSONLINE</span></div>
+      <a href="https://sportsonehd.site/" target="_blank" style="text-decoration: none;">
+        <div class="logo"><span>SPORTSONEHD</span></div>
+      </a>
     </div>
     <div class="league-tabs" id="leagueTabs">
-      <div class="league-tab active" data-league="All">All</div>
+      <div class="league-tab active" data-league="All">All Streams</div>
       <div class="league-tab" data-league="MMA">MMA Streams</div>
       <div class="league-tab" data-league="BOXING">BOXING Streams</div>
       <div class="league-tab" data-league="NBA">NBA Streams</div>
@@ -27,7 +28,7 @@
       <div class="league-tab" data-league="NFL">NFL Streams</div>
       <div class="league-tab" data-league="NHL">NHL Streams</div>
       <div class="league-tab" data-league="MLS">MLS Streams</div>
-      <div class="league-tab" data-league="Soccer">Soccer</div>
+      <div class="league-tab" data-league="SOCCER">Soccer Streams</div>
     </div>
   </header>
 
@@ -44,15 +45,44 @@
         <div id="matches">
 
 
-      <div class="match-link"
-     data-frame="https://topembed.pw/channel/FanDuelSportsOhio[USA]">
-  <div class="match-card">
-    <div class="match-league">WNBA</div>
-    <div class="match-title">Atlanta Dream W - Golden State Valkyries W
-</div>
-    <div class="match-time">July 8, 2025 - 3:00 PM ET</div>
-  </div>
-</div>
+          <div class="match-link" data-league="MLS" data-frame="https://topembed.pw/channel/ex7986226">
+            <div class="match-card">
+              <div class="match-league">
+                MLS
+              </div>
+              <div class="match-title">
+                Los Angeles FC vs Colorado Rapids
+              </div>
+              <div class="match-time">July 9, 2025 - 10:30 PM ET</div>
+            </div>
+          </div>
+
+
+
+          <div class="match-link" data-league="MLS" data-frame="https://topembed.pw/channel/ex7986226">
+            <div class="match-card">
+              <div class="match-league">
+                MLS
+              </div>
+              <div class="match-title">
+                Los Angeles FC vs Colorado Rapids
+              </div>
+              <div class="match-time">July 9, 2025 - 10:30 PM ET</div>
+            </div>
+          </div>
+
+
+          <div class="match-link" data-league="MLB" data-frame="https://topembed.pw/channel/ex7986226">
+            <div class="match-card">
+              <div class="match-league">
+                MLB
+              </div>
+              <div class="match-title">
+                Los Angeles FC vs Colorado Rapids
+              </div>
+              <div class="match-time">July 9, 2025 - 10:30 PM ET</div>
+            </div>
+          </div>
 
 
 
@@ -72,52 +102,86 @@
   </div>
 
   <script>
-    document.querySelectorAll('.league-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.league-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+     document.querySelectorAll('.league-tab').forEach(tab => {
+    tab.addEventListener('click', function (event) {
+      event.preventDefault(); // 🔥 Stop page reload
 
-        const selectedLeague = tab.getAttribute('data-league');
-        const matches = document.querySelectorAll('.match-link');
+      const selectedLeague = this.getAttribute('data-league');
 
-        matches.forEach(match => {
-          const league = match.getAttribute('data-league');
-          match.style.display = (selectedLeague === 'All' || selectedLeague === league) ? 'block' : 'none';
-        });
+      // Set active class
+      document.querySelectorAll('.league-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+
+      // Show/hide matches
+      document.querySelectorAll('.match-link').forEach(match => {
+        const matchLeague = match.getAttribute('data-league');
+        if (selectedLeague === 'All' || matchLeague === selectedLeague) {
+          match.style.display = 'block';
+        } else {
+          match.style.display = 'none';
+        }
+      });
+
+      // ✅ Optional: Update URL (without reload)
+      const newUrl = selectedLeague === "All"
+        ? window.location.origin
+        : `${window.location.origin}/category/${selectedLeague.toLowerCase()}`;
+      history.pushState(null, '', newUrl);
+    });
+  });
+
+
+
+
+     function searchMatches() {
+    const input = document.getElementById('searchBox').value.toLowerCase();
+    const matches = document.querySelectorAll('.match-link');
+
+    matches.forEach(match => {
+      const league = match.dataset.league.toLowerCase();
+      const title = match.querySelector('.match-title').textContent.toLowerCase();
+      const leagueText = match.querySelector('.match-league').textContent.toLowerCase();
+
+      if (league.includes(input) || title.includes(input) || leagueText.includes(input)) {
+        match.style.display = '';
+      } else {
+        match.style.display = 'none';
+      }
+    });
+  }
+
+
+
+    document.querySelectorAll('.match-link').forEach(el => {
+      el.addEventListener('click', function () {
+        const frame = this.getAttribute('data-frame');
+        const title = this.querySelector('.match-title').textContent.trim();
+
+        if (frame && title) {
+          const slug = title.toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^\w-]/g, '');
+
+          sessionStorage.setItem('frame', frame);
+          sessionStorage.setItem('title', title);
+
+          window.location.href = `/watch?match=${slug}`;
+        }
       });
     });
 
-    function searchMatches() {
-      const input = document.getElementById('searchBox').value.toLowerCase();
-      const matches = document.querySelectorAll('.match-link');
 
-      matches.forEach(match => {
-        const title = match.querySelector('.match-title')?.textContent.toLowerCase() || '';
-        const league = match.getAttribute('data-league').toLowerCase();
-        match.style.display = (title.includes(input) || league.includes(input)) ? 'block' : 'none';
-      });
-    }
-
-
-
-document.querySelectorAll('.match-link').forEach(el => {
-  el.addEventListener('click', function () {
-    const frame = this.getAttribute('data-frame');
-    const title = this.querySelector('.match-title').textContent.trim();
-
-    if (frame && title) {
-      const slug = title.toLowerCase()
-                        .replace(/\s+/g, '-')
-                        .replace(/[^\w-]/g, '');
-
-      sessionStorage.setItem('frame', frame);
-      sessionStorage.setItem('title', title);
-
-      window.location.href = `/watch?match=${slug}`;
-    }
-  });
-});
   </script>
+  <footer class="site-footer">
+  <div class="footer-container">
+    <h2>SPORTSONEHD</h2>
+    <p>Where real fans stream real action — 100% FREE, always! 🔥</p>
+    <p>⚽ Cricket, Football, UFC, WWE, and more — We’ve got it all!</p>
+    <p>📌 Don’t miss a moment — <span class="highlight">Bookmark SPORTSONEHD now!</span></p>
+    <p class="copyright">&copy; 2025 SPORTSONEHD. All rights reserved.</p>
+  </div>
+</footer>
+
 </body>
 
 </html>
