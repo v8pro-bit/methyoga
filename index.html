@@ -1,50 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SportsOnline - Live Sports</title>
-  <link href="./output.css" rel="stylesheet" />
-  <link rel="icon" type="image/png"
-    href="https://img.freepik.com/premium-vector/sports-brand-logo-vector-32_666870-2794.jpg">
-</head>
-
-<body>
-  <header>
-    <div class="header-top">
-      <a href="https://sportsonehd.site/" target="_blank" style="text-decoration: none;">
-        <div class="logo"><span>SPORTSONEHD</span></div>
-      </a>
-    </div>
-    <div class="league-tabs" id="leagueTabs">
-      <div class="league-tab active" data-league="All">All Streams</div>
-      <div class="league-tab" data-league="MMA">MMA Streams</div>
-      <div class="league-tab" data-league="BOXING">BOXING Streams</div>
-      <div class="league-tab" data-league="NBA">NBA Streams</div>
-      <div class="league-tab" data-league="CFB">CFB Streams</div>
-      <div class="league-tab" data-league="NCAAB">NCAAB Streams</div>
-      <div class="league-tab" data-league="WWE">WWE Streams</div>
-      <div class="league-tab" data-league="MLB">MLB Streams</div>
-      <div class="league-tab" data-league="NFL">NFL Streams</div>
-      <div class="league-tab" data-league="NHL">NHL Streams</div>
-      <div class="league-tab" data-league="MLS">MLS Streams</div>
-      <div class="league-tab" data-league="SOCCER">Soccer Streams</div>
-    </div>
-  </header>
-
-  <div class="container">
-    <div class="content-box">
-      <section class="main-content">
-        <div class="ad-top">
-
-        </div>
-
-        <input type="text" class="search" id="searchBox" placeholder="Search team & League ..."
-          onkeyup="searchMatches()">
-
-        <div id="matches">
-
-
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>SportsOneHD – Watch Live Sports in HD Anytime, Anywhere</title><link href="./output.css" rel="stylesheet" /><link rel="shortcut icon" type="image/x-icon" href="./favicon.png" /></head><body><header><div class="header-top"><a href="https://sportsonehd.site/" target="_blank" style="text-decoration: none;"><div class="logo"><span>SPORTSONEHD</span></div></a></div><div class="league-tabs" id="leagueTabs"><div class="league-tab" data-league="MMA">MMA Streams</div><div class="league-tab" data-league="BOXING">BOXING Streams</div><div class="league-tab" data-league="NBA">NBA Streams</div><div class="league-tab" data-league="CFB">CFB Streams</div><div class="league-tab" data-league="NCAAB">NCAAB Streams</div><div class="league-tab" data-league="WWE">WWE Streams</div><div class="league-tab" data-league="MLB">MLB Streams</div><div class="league-tab" data-league="NFL">NFL Streams</div><div class="league-tab" data-league="NHL">NHL Streams</div><div class="league-tab" data-league="MLS">MLS Streams</div><div class="league-tab" data-league="SOCCER">Soccer Streams</div></div></header>
+<div class="container"><div class="content-box"><section class="main-content"><div class="ad-top">
+<!--728x90-->                  
+<!--728x90--></div>
+<input type="text" class="search" id="searchBox" placeholder="Search team & League ..."onkeyup="searchMatches()"><div id="matches">
+<div class="match-link" data-league="MLS" data-frame="https://thedaddy.to/embed/stream-103.php">
+            <div class="match-card">
+              <div class="match-league">
+                MLS
+              </div>
+              <div class="match-title">
+                Los Angeles FC vs Colorado Rapids
+              </div>
+              <div class="match-time">July 9, 2025 - 8:00 PM ET</div>
+            </div>
+          </div>
           <div class="match-link" data-league="MLS" data-frame="https://topembed.pw/channel/ex7986226">
             <div class="match-card">
               <div class="match-league">
@@ -53,25 +22,9 @@
               <div class="match-title">
                 Los Angeles FC vs Colorado Rapids
               </div>
-              <div class="match-time">July 9, 2025 - 10:30 PM ET</div>
+              <div class="match-time">July 9, 2025 - 10:30 AM ET</div>
             </div>
           </div>
-
-
-
-          <div class="match-link" data-league="MLS" data-frame="https://topembed.pw/channel/ex7986226">
-            <div class="match-card">
-              <div class="match-league">
-                MLS
-              </div>
-              <div class="match-title">
-                Los Angeles FC vs Colorado Rapids
-              </div>
-              <div class="match-time">July 9, 2025 - 10:30 PM ET</div>
-            </div>
-          </div>
-
-
           <div class="match-link" data-league="MLB" data-frame="https://topembed.pw/channel/ex7986226">
             <div class="match-card">
               <div class="match-league">
@@ -80,75 +33,75 @@
               <div class="match-title">
                 Los Angeles FC vs Colorado Rapids
               </div>
-              <div class="match-time">July 9, 2025 - 10:30 PM ET</div>
+              <div class="match-time">July 15, 2025 - 10:30 AM ET</div>
             </div>
           </div>
-
-
-
-
-
-        </div>
-      </section>
-
-      <aside class="sidebar">
-
-
-
-
-
-      </aside>
-    </div>
-  </div>
-
+        </div></section><div class="sidebar"> <div class="mobile-ad"><!--160x300--><!--160x300--></div>
+           <div class="mobile-ad ad-600"><!--160x600--><!--160x600--></div></div></div></div>
   <script>
-     document.querySelectorAll('.league-tab').forEach(tab => {
-    tab.addEventListener('click', function (event) {
-      event.preventDefault(); // 🔥 Stop page reload
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
 
-      const selectedLeague = this.getAttribute('data-league');
+    function filterByLeague(selectedLeague) {
+      // Set active tab
+      document.querySelectorAll('.league-tab').forEach(t => {
+        const league = t.getAttribute('data-league');
+        t.classList.toggle('active', league === selectedLeague || (selectedLeague === null && league === 'All'));
+      });
 
-      // Set active class
-      document.querySelectorAll('.league-tab').forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-
-      // Show/hide matches
+      // Filter matches
       document.querySelectorAll('.match-link').forEach(match => {
         const matchLeague = match.getAttribute('data-league');
-        if (selectedLeague === 'All' || matchLeague === selectedLeague) {
+        if (!selectedLeague || selectedLeague === 'All' || matchLeague === selectedLeague) {
           match.style.display = 'block';
         } else {
           match.style.display = 'none';
         }
       });
+    }
 
-      // ✅ Optional: Update URL (without reload)
-      const newUrl = selectedLeague === "All"
-        ? window.location.origin
-        : `${window.location.origin}/category/${selectedLeague.toLowerCase()}`;
-      history.pushState(null, '', newUrl);
+    // On tab click
+    document.querySelectorAll('.league-tab').forEach(tab => {
+      tab.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const selectedLeague = this.getAttribute('data-league');
+
+        // Change URL without reload
+        const newUrl = selectedLeague === 'All'
+          ? `${window.location.pathname}`
+          : `${window.location.pathname}?category=${selectedLeague.toLowerCase()}`;
+        history.pushState(null, '', newUrl);
+
+        filterByLeague(selectedLeague);
+      });
     });
-  });
+
+    const categoryFromURL = getQueryParam('category');
+    const leagueFromURL = categoryFromURL ? categoryFromURL.toUpperCase() : 'All';
+    filterByLeague(leagueFromURL);
 
 
 
 
-     function searchMatches() {
-    const input = document.getElementById('searchBox').value.toLowerCase();
-    const matches = document.querySelectorAll('.match-link');
+    function searchMatches() {
+      const input = document.getElementById('searchBox').value.toLowerCase();
+      const matches = document.querySelectorAll('.match-link');
 
-    matches.forEach(match => {
-      const league = match.dataset.league.toLowerCase();
-      const title = match.querySelector('.match-title').textContent.toLowerCase();
-      const leagueText = match.querySelector('.match-league').textContent.toLowerCase();
+      matches.forEach(match => {
+        const league = match.dataset.league.toLowerCase();
+        const title = match.querySelector('.match-title').textContent.toLowerCase();
+        const leagueText = match.querySelector('.match-league').textContent.toLowerCase();
 
-      if (league.includes(input) || title.includes(input) || leagueText.includes(input)) {
-        match.style.display = '';
-      } else {
-        match.style.display = 'none';
-      }
-    });
-  }
+        if (league.includes(input) || title.includes(input) || leagueText.includes(input)) {
+          match.style.display = '';
+        } else {
+          match.style.display = 'none';
+        }
+      });
+    }
 
 
 
@@ -171,17 +124,152 @@
     });
 
 
+
+
+
+    let selectedLeague = 'All';
+
+    function filterMatches() {
+      const searchQuery = document.getElementById('searchBox').value.toLowerCase();
+
+      document.querySelectorAll('.match-link').forEach(match => {
+        const matchLeague = match.getAttribute('data-league');
+        const matchTitle = match.querySelector('.match-title').innerText.toLowerCase();
+
+        const isLeagueMatch = selectedLeague === 'All' || matchLeague === selectedLeague;
+        const isSearchMatch = matchTitle.includes(searchQuery);
+
+        match.style.display = (isLeagueMatch && isSearchMatch) ? 'block' : 'none';
+      });
+    }
+
+    // Handle league tab click
+    document.querySelectorAll('.league-tab').forEach(tab => {
+      tab.addEventListener('click', function (e) {
+        e.preventDefault();
+        selectedLeague = this.getAttribute('data-league');
+
+        // Highlight active tab
+        document.querySelectorAll('.league-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        // Update URL
+        const newUrl = selectedLeague === 'All'
+          ? window.location.pathname
+          : `${window.location.pathname}?category=${selectedLeague.toLowerCase()}`;
+        history.pushState(null, '', newUrl);
+
+        filterMatches();
+      });
+    });
+
+    // Search event
+    document.getElementById('searchBox').addEventListener('keyup', filterMatches);
+
+    // On page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const leagueParam = urlParams.get('category');
+      if (leagueParam) {
+        selectedLeague = leagueParam.toUpperCase();
+        document.querySelectorAll('.league-tab').forEach(tab => {
+          const league = tab.getAttribute('data-league');
+          tab.classList.toggle('active', league === selectedLeague);
+        });
+      }
+      filterMatches();
+    });
+
+
+  </script>
+
+  <script>
+    function getTimeRemaining(endTime) {
+      const now = new Date().getTime();
+      const total = endTime - now;
+      const seconds = Math.floor((total / 1000) % 60);
+      const minutes = Math.floor((total / 1000 / 60) % 60);
+      const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+      const days = Math.floor(total / (1000 * 60 * 60 * 24));
+      return { total, days, hours, minutes, seconds };
+    }
+
+    function parseETStringToDate(etString) {
+      const cleaned = etString.replace('ET', '').trim();
+      const [datePart, timePart] = cleaned.split(' - ');
+      const [monthName, day, year] = datePart.split(' ');
+      const [hour, minutePart] = timePart.split(':');
+      const [minute, ampm] = minutePart.split(' ');
+
+      const months = {
+        January: 0, February: 1, March: 2, April: 3,
+        May: 4, June: 5, July: 6, August: 7,
+        September: 8, October: 9, November: 10, December: 11
+      };
+
+      let h = parseInt(hour);
+      const m = parseInt(minute);
+      if (ampm === 'PM' && h !== 12) h += 12;
+      if (ampm === 'AM' && h === 12) h = 0;
+
+      const localDate = new Date(Date.UTC(
+        parseInt(year),
+        months[monthName],
+        parseInt(day.replace(',', '')),
+        h + 4, // ET to UTC
+        m
+      ));
+      return localDate;
+    }
+
+    function initCountdowns() {
+      document.querySelectorAll('.match-time').forEach(el => {
+        const originalText = el.innerText.trim();
+        const matchTime = parseETStringToDate(originalText);
+
+        el.innerHTML = ''; // Remove original date text
+
+        const countdown = document.createElement('div');
+        countdown.style.display = 'inline-block';
+        countdown.style.padding = '6px 12px';
+        countdown.style.background = '#003a42';
+        countdown.style.color = 'white';
+        countdown.style.fontSize = '14px';
+        countdown.style.borderRadius = '8px';
+        countdown.style.fontWeight = '600';
+        countdown.style.fontFamily = "'Segoe UI', sans-serif";
+        countdown.style.border = '1px solid #00acc1';
+        countdown.style.letterSpacing = '0.5px';
+
+        el.appendChild(countdown);
+
+        function updateCountdown() {
+          const t = getTimeRemaining(matchTime);
+          if (t.total > 0) {
+            countdown.innerText = `Starts in: ${t.days > 0 ? t.days + 'd ' : ''}${t.hours}h ${t.minutes}m ${t.seconds}s`;
+          } else {
+            countdown.innerText = 'MATCH STARTED';
+            countdown.style.background = '#003a42';
+            countdown.style.color = 'white';
+            countdown.style.border = '1px solid #00acc1';
+          }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+      });
+    }
+    window.addEventListener('DOMContentLoaded', initCountdowns);
   </script>
   <footer class="site-footer">
-  <div class="footer-container">
-    <h2>SPORTSONEHD</h2>
-    <p>Where real fans stream real action — 100% FREE, always! 🔥</p>
-    <p>⚽ Cricket, Football, UFC, WWE, and more — We’ve got it all!</p>
-    <p>📌 Don’t miss a moment — <span class="highlight">Bookmark SPORTSONEHD now!</span></p>
-    <p class="copyright">&copy; 2025 SPORTSONEHD. All rights reserved.</p>
-  </div>
-</footer>
-
+    <div class="footer-container">
+      <h2>SPORTSONEHD</h2>
+      <p>Where real fans stream real action — 100% FREE, always! 🔥</p>
+      <p>⚽ Cricket, Football, UFC, WWE, and more — We’ve got it all!</p>
+      <p>📌 Don’t miss a moment — <span class="highlight">Bookmark SPORTSONEHD now!</span></p>
+      <p class="copyright">&copy; 2025 SPORTSONEHD. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 
 </html>
